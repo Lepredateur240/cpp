@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.class.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 14:23:48 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/18 15:05:35 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/19 16:52:45 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@ class	PhoneBook{
 private:
 	Contact _contact[8];
 	int		index;
+
+	std::string formatColumn(std::string str) {
+    if (str.length() > 10) {
+        return str.substr(0, 9) + ".";
+    }
+    return str;
+}
 
 public:
 	PhoneBook(void);

@@ -1,15 +1,17 @@
 CC          := c++
 SHELL       := /bin/bash
-NAME        := megaphone
+NAME        := phonebook
 
 # Directories
 OBJ_DIR       := obj
 
 # Files
-SRCS := .cpp
+SRCS := PhoneBook.class.cpp \
+		main.cpp \
+		Contact.class.cpp
 
 # Object mapping
-OBJS       := $(SRCS:%.c=$(OBJ_DIR)/%.o)
+OBJS       := $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 
 # Flags
 CFLAGS         := -Wall -Wextra -Werror -std=c++98
@@ -19,10 +21,10 @@ all: $(NAME)
 
 # Linking Mandatory
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -std=c++98 -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 # Compilation Rule Mandatory
-$(OBJ_DIR)/%.o: /%.c
+$(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 

@@ -1,34 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Account.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/06 14:25:16 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/19 16:13:06 by masenche         ###   ########.fr       */
+/*   Created: 2026/02/19 17:44:17 by masenche          #+#    #+#             */
+/*   Updated: 2026/02/19 17:44:18 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.class.hpp"
-#include <iostream>
-#include <string>
-
-int	main(void)
-{
-	PhoneBook	instance;
-	std::string	command;
-
-	while (true) {
-		std::cout << "Enter command (ADD, SEARCH, EXIT) : ";
-		if (!std::getline(std::cin, command))
-			break ;
-		if (command == "ADD")
-			instance.ADD();
-		if (command == "SEARCH")
-			instance.SEARCH();
-		if (command == "EXIT")
-			break ;
-	}
-	return (0);
-}
