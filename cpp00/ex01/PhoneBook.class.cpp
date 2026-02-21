@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.class.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 14:25:42 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/19 17:15:40 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/21 13:18:43 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.class.hpp"
 #include <iomanip>
 #include <iostream>
-#include <limits>
 
 PhoneBook::PhoneBook(void){
-	index = 0;
+	_index = 0;
 	return;
 }
 
@@ -25,7 +24,7 @@ PhoneBook::~PhoneBook(void){
 }
 
 void	PhoneBook::ADD(){
-	Contact &current = _contact[index % 8];
+	Contact &current = _contact[_index % 8];
 	Contact temp;
 
 	std::cout << "First Name: ";
@@ -49,7 +48,7 @@ void	PhoneBook::ADD(){
 	if (!std::getline(std::cin, temp.secret) || temp.secret.empty()) 
 		return;
 	current = temp;
-	index++;
+	_index++;
 	std::cout << "Contact added successfully!" << std::endl;
 }
 

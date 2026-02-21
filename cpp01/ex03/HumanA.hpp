@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.class.hpp                                :+:      :+:    :+:   */
+/*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/06 14:23:48 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/21 13:18:28 by masenche         ###   ########.fr       */
+/*   Created: 2026/02/21 11:20:54 by masenche          #+#    #+#             */
+/*   Updated: 2026/02/21 14:00:27 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_CLASS_H
-# define PHONEBOOK_CLASS_H
+#ifndef HUMANA_HPP
+# define HUMANA_HPP
 
-# include "Contact.class.hpp"
-
-class	PhoneBook{
+#include "Weapon.hpp"
+#include <string>
+class	HumanA{
 private:
-	Contact _contact[8];
-	int		_index;
-
-	std::string formatColumn(std::string str) {
-    if (str.length() > 10) {
-        return str.substr(0, 9) + ".";
-    }
-    return str;
-}
+	std::string	_name;
+	Weapon		&_weapon;
 
 public:
-	PhoneBook(void);
-	~PhoneBook(void);
-	
-	void	ADD();
-	void	SEARCH();
+	HumanA(std::string name, Weapon &type_weapon);
+	~HumanA();
+	void	attack(void);
 };
 
 #endif

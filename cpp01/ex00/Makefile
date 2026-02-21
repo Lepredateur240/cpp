@@ -1,12 +1,15 @@
 CC          := c++
 SHELL       := /bin/bash
-NAME        := megaphone
+NAME        := Zombie
 
 # Directories
 OBJ_DIR       := obj
 
 # Files
-SRCS := megaphone.cpp
+SRCS := main.cpp \
+		newZombie.cpp \
+		randomChump.cpp \
+		Zombie.cpp
 
 # Object mapping
 OBJS       := $(SRCS:%.c=$(OBJ_DIR)/%.o)
