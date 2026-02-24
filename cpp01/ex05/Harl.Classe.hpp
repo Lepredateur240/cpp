@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.class.hpp                                :+:      :+:    :+:   */
+/*   Harl.Classe.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/06 14:23:48 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/24 15:35:01 by masenche         ###   ########.fr       */
+/*   Created: 2026/02/24 14:21:57 by masenche          #+#    #+#             */
+/*   Updated: 2026/02/24 15:29:15 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_CLASS_H
-# define PHONEBOOK_CLASS_H
+#ifndef HARL_CLASSE_HPP
+# define HARL_CLASSE_HPP
 
-# include "Contact.class.hpp"
+#include <iostream>
 
-class	PhoneBook{
+class Harl{
+
 private:
-	Contact _contact[8];
-	int		_index;
-
-	std::string formatColumn(std::string str);
+	void	DEBUG();
+	void	INFO();
+	void	WARNING();
+	void	ERROR();
 
 public:
-	PhoneBook(void);
-	~PhoneBook(void);
+	Harl();
+	~Harl();
+	void	complain(std::string level);
 	
-	void	ADD();
-	void	SEARCH();
 };
 
 #endif

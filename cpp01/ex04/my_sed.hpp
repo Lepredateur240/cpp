@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.class.hpp                                :+:      :+:    :+:   */
+/*   my_sed.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/06 14:23:48 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/24 15:35:01 by masenche         ###   ########.fr       */
+/*   Created: 2026/02/24 13:29:05 by masenche          #+#    #+#             */
+/*   Updated: 2026/02/24 15:29:27 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_CLASS_H
-# define PHONEBOOK_CLASS_H
+#ifndef MY_SED_HPP
+#define MY_SED_HPP
 
-# include "Contact.class.hpp"
 
-class	PhoneBook{
-private:
-	Contact _contact[8];
-	int		_index;
+#include <iostream>
+#include <fstream>
+#include <string>
 
-	std::string formatColumn(std::string str);
-
-public:
-	PhoneBook(void);
-	~PhoneBook(void);
-	
-	void	ADD();
-	void	SEARCH();
-};
+void	ft_sed(std::string filename, std::string s1, std::string s2, std::ifstream &ifs);
 
 #endif

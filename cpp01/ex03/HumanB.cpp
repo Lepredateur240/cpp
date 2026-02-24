@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 11:20:52 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/21 14:16:18 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/24 15:31:34 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ HumanB::~HumanB(){
 	
 }
 
-void HumanB::attack(void){
+void	HumanB::attack(void){
 	std::cout << _name << "> attacks with their " << _weapon->getType() << std::endl ;
 }
 

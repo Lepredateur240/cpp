@@ -1,12 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   replace.cpp                                        :+:      :+:    :+:   */
+/*   error.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/21 14:26:47 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/21 14:26:48 by masenche         ###   ########.fr       */
+/*   Created: 2026/02/24 13:30:21 by masenche          #+#    #+#             */
+/*   Updated: 2026/02/24 15:30:26 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "error.hpp"
+
+void	print_error(const std::string &message){
+	std::cerr << "Error: " << message << std::endl;
+	exit(1);
+}

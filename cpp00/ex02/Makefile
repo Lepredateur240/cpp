@@ -1,20 +1,20 @@
 CC          := c++
 SHELL       := /bin/bash
-NAME        := my_sed
+NAME        := account
 
 # Directories
 OBJ_DIR       := obj
 
 # Files
-SRCS := main.cpp \
-		error.cpp \
-		my_sed.cpp
+SRCS := Account.cpp \
+		main.cpp \
+		test.cpp
 
 # Object mapping
 OBJS       := $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 
 # Flags
-CFLAGS     := -Wall -Wextra -Werror -std=c++98
+CFLAGS         := -Wall -Wextra -Werror -std=c++98
 
 # Main Rule
 all: $(NAME)

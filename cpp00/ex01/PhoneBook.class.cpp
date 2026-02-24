@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.class.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 14:25:42 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/21 13:18:43 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/24 15:35:30 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	PhoneBook::ADD(){
 	std::cout << "Contact added successfully!" << std::endl;
 }
 
-void PhoneBook::SEARCH() {
+void	PhoneBook::SEARCH() {
     std::cout << "|" << std::setw(10) << "Index"
               << "|" << std::setw(10) << "First Name"
               << "|" << std::setw(10) << "Last Name"
@@ -76,4 +76,11 @@ void PhoneBook::SEARCH() {
         std::cout << "Secret    : " << _contact[i].secret << std::endl;
     } else
         std::cout << "Invalid index!" << std::endl;
+}
+
+std::string	PhoneBook::formatColumn(std::string str){
+	if (str.length() > 10) {
+		return str.substr(0, 9) + ".";
+	}
+	return str;
 }

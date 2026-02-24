@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 11:21:01 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/21 14:16:14 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/24 15:31:38 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "Weapon.hpp"
 #include <string>
+
 class	HumanB{
 private:
 	std::string	_name;

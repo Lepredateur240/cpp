@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.Classe.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 09:44:54 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/21 10:51:30 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/24 15:32:37 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ public:
 
 	void	announce(void);
 	void	setName(std::string);
-	Zombie* zombieHorde( int N, std::string name );
+	Zombie*	zombieHorde( int N, std::string name );
 };
 
-Zombie* zombieHorde(int N, std::string name);
+Zombie*	zombieHorde(int N, std::string name);
 
 #endif

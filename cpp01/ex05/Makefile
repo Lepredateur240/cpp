@@ -1,14 +1,13 @@
 CC          := c++
 SHELL       := /bin/bash
-NAME        := my_sed
+NAME        := harl
 
 # Directories
 OBJ_DIR       := obj
 
 # Files
 SRCS := main.cpp \
-		error.cpp \
-		my_sed.cpp
+		Harl.Classe.cpp
 
 # Object mapping
 OBJS       := $(SRCS:%.cpp=$(OBJ_DIR)/%.o)

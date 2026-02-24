@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.class.hpp                                :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/06 14:23:48 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/24 15:35:01 by masenche         ###   ########.fr       */
+/*   Created: 2026/02/24 15:16:49 by masenche          #+#    #+#             */
+/*   Updated: 2026/02/24 17:35:53 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_CLASS_H
-# define PHONEBOOK_CLASS_H
-
-# include "Contact.class.hpp"
-
-class	PhoneBook{
-private:
-	Contact _contact[8];
-	int		_index;
-
-	std::string formatColumn(std::string str);
-
-public:
-	PhoneBook(void);
-	~PhoneBook(void);
-	
-	void	ADD();
-	void	SEARCH();
-};
-
-#endif
+#include "Fixed.Classe.hpp"
+#include <iostream>
+int main(void) {
+	Fixed a;
+	Fixed b(a);
+	Fixed c;
+	c = b;
+	std::cout << a.getRawBits() << std::endl;
+	std::cout << b.getRawBits() << std::endl;
+	std::cout << c.getRawBits() << std::endl;
+	return 0;
+}

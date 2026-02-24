@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.class.hpp                                :+:      :+:    :+:   */
+/*   Fixed.Classe.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/06 14:23:48 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/24 15:35:01 by masenche         ###   ########.fr       */
+/*   Created: 2026/02/24 15:17:19 by masenche          #+#    #+#             */
+/*   Updated: 2026/02/24 17:35:37 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_CLASS_H
-# define PHONEBOOK_CLASS_H
+#ifndef FIXED_CLASSE_HPP
+# define FIXED_CLASSE_HPP
 
-# include "Contact.class.hpp"
+#include <iostream>
 
-class	PhoneBook{
+class Fixed{
 private:
-	Contact _contact[8];
-	int		_index;
-
-	std::string formatColumn(std::string str);
+	int 				_fixedPointValue;
+	static const int	_fractionalBits = 8;
 
 public:
-	PhoneBook(void);
-	~PhoneBook(void);
-	
-	void	ADD();
-	void	SEARCH();
+	Fixed();
+	Fixed(const Fixed &copy);
+	Fixed &operator=(const Fixed &copy);
+	~Fixed();
+
+	int		getRawBits(void) const;
+	void	setRawBits(int const raw);
 };
 
 #endif

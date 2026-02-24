@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 11:21:07 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/21 13:57:06 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/24 15:32:07 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ private:
 public:
 	Weapon(std::string type);
 	~Weapon();
-	const std::string& getType(void);
-	void	setType(std::string type);
+	const std::string&	getType(void);
+	void				setType(std::string type);
 	
 };
 #endif
