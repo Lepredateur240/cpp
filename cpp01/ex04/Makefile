@@ -1,18 +1,18 @@
 CC          := c++
 SHELL       := /bin/bash
-NAME        := megaphone
+NAME        := my_sed
 
 # Directories
 OBJ_DIR       := obj
 
 # Files
-SRCS := megaphone.cpp
+SRCS := 
 
 # Object mapping
 OBJS       := $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 # Flags
-CFLAGS         := -Wall -Wextra -Werror -std=c++98
+CFLAGS     := -Wall -Wextra -Werror -std=c++98
 
 # Main Rule
 all: $(NAME)

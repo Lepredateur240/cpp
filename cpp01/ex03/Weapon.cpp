@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.class.hpp                                :+:      :+:    :+:   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/06 14:23:48 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/21 13:18:28 by masenche         ###   ########.fr       */
+/*   Created: 2026/02/21 11:18:42 by masenche          #+#    #+#             */
+/*   Updated: 2026/02/21 13:56:59 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_CLASS_H
-# define PHONEBOOK_CLASS_H
+#include "Weapon.hpp"
+#include <string>
 
-# include "Contact.class.hpp"
-
-class	PhoneBook{
-private:
-	Contact _contact[8];
-	int		_index;
-
-	std::string formatColumn(std::string str) {
-    if (str.length() > 10) {
-        return str.substr(0, 9) + ".";
-    }
-    return str;
+Weapon::Weapon(std::string type) : _type(type){
+	_type = getType();
+	setType(std::string (_type));
 }
 
-public:
-	PhoneBook(void);
-	~PhoneBook(void);
+Weapon::~Weapon(){
 	
-	void	ADD();
-	void	SEARCH();
-};
+}
 
-#endif
+void	Weapon::setType(std::string type) {
+	this->_type = type;
+}
+
+const std::string& Weapon::getType() {
+    return this->_type;
+}

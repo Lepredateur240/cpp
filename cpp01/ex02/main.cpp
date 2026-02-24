@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.class.hpp                                :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/06 14:23:48 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/21 13:18:28 by masenche         ###   ########.fr       */
+/*   Created: 2026/02/21 11:02:29 by masenche          #+#    #+#             */
+/*   Updated: 2026/02/21 11:16:06 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_CLASS_H
-# define PHONEBOOK_CLASS_H
+#include <iostream>
+#include <string>
+int main(void){
+	std::string string = "HI THIS IS BRAIN";
 
-# include "Contact.class.hpp"
+	std::string	*stringPTR = &string;
+	std::string	&stringRef = string;
 
-class	PhoneBook{
-private:
-	Contact _contact[8];
-	int		_index;
-
-	std::string formatColumn(std::string str) {
-    if (str.length() > 10) {
-        return str.substr(0, 9) + ".";
-    }
-    return str;
+	std::cout << &string << " / " << &stringPTR << " / " << &stringRef << std::endl;
+	std::cout << string << " / " << *stringPTR << " / " << stringRef << std::endl;
 }
-
-public:
-	PhoneBook(void);
-	~PhoneBook(void);
-	
-	void	ADD();
-	void	SEARCH();
-};
-
-#endif

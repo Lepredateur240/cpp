@@ -1,18 +1,21 @@
 CC          := c++
 SHELL       := /bin/bash
-NAME        := megaphone
+NAME        := humain
 
 # Directories
 OBJ_DIR       := obj
 
 # Files
-SRCS := megaphone.cpp
+SRCS := main.cpp \
+		HumanB.cpp \
+		HumanA.cpp \
+		Weapon.cpp
 
 # Object mapping
 OBJS       := $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 # Flags
-CFLAGS         := -Wall -Wextra -Werror -std=c++98
+CFLAGS     := -Wall -Wextra -Werror -std=c++98
 
 # Main Rule
 all: $(NAME)
