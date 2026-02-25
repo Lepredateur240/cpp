@@ -6,7 +6,7 @@
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 14:23:55 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/13 15:11:27 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 14:59:06 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,5 @@ Contact::Contact(void){
 }
 
 Contact::~Contact(void){
-	
+	return;
 }

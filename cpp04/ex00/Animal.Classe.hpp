@@ -6,7 +6,7 @@
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:19:22 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/25 13:52:29 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:25:03 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 # define ANIMAL_CLASSE_HPP
 
 #include <string>
+
 class Animal{
 protected:
-	std::string _type;
+	std::string	_type;
 
 public:
 	Animal();

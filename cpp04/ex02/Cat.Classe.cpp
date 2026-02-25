@@ -6,7 +6,7 @@
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:16:28 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/25 14:44:50 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:32:13 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,20 @@
 Cat::Cat() : AAnimal("Cat"){
 	_ideas = new Brain();
 	std::cout << "Cat Default was created with a Brain!" << std::endl;
+	return;
 }
 
 Cat::Cat(std::string type) : AAnimal(type){
 	_ideas = new Brain();
 	std::cout << "Cat " << type  << " was created!" << std::endl;
+	return;
 }
 
 Cat::Cat(const Cat& copy){
 	this->_ideas = new Brain();
 	*(this->_ideas) = *(copy._ideas);
 	std::cout << "Cat " << this->_type << " was copied with its own Brain!" << std::endl;
+	return;
 }
 
 Cat& Cat::operator=(const Cat& copy){
@@ -41,9 +44,10 @@ Cat& Cat::operator=(const Cat& copy){
 	return *this;
 }
 
-Cat::~Cat(){
+Cat::~Cat(void){
 	delete _ideas;
 	std::cout << "Cat " << this->_type << " was destroyed! (Brain freed)" << std::endl;
+	return;
 }
 
 void	Cat::makeSound() const{

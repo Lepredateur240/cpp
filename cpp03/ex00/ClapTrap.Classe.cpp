@@ -6,7 +6,7 @@
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 21:59:19 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/25 13:27:58 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:21:53 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 
 ClapTrap::ClapTrap() : _name("Default"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
     std::cout << "ClapTrap Default created!" << std::endl;
+	return;
 }
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0){
 	std::cout << "ClapTrap " << this->_name << " created!" << std::endl;
+	return;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& copy){
 	*this = copy;
 	std::cout << "ClapTrap " << this->_name << " copied!" << std::endl;
+	return;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& copy){
@@ -36,8 +39,9 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& copy){
 	return *this;
 }
 
-ClapTrap::~ClapTrap(){
+ClapTrap::~ClapTrap(void){
 	std::cout << "ClapTrap " << this->_name << " destroyed!" << std::endl;
+	return;
 }
 
 void ClapTrap::attack(const std::string& target){

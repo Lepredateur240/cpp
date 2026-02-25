@@ -6,7 +6,7 @@
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 14:23:52 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/13 15:12:49 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:02:47 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CONTACT_CLASS_H
 #include <string>
 class Contact{
-	
+private:
 
 public:
 	Contact(void);

@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   my_sed.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 13:29:05 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/24 15:29:27 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:12:52 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MY_SED_HPP
 #define MY_SED_HPP
-
 
 #include <iostream>
 #include <fstream>

@@ -9,7 +9,7 @@ OBJ_DIR       := obj
 SRCS := main.cpp 
 
 # Object mapping
-OBJS       := $(SRCS:%.c=$(OBJ_DIR)/%.o)
+OBJS       := $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 
 # Flags
 CFLAGS     := -Wall -Wextra -Werror -std=c++98
@@ -22,7 +22,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 # Compilation Rule Mandatory
-$(OBJ_DIR)/%.o: /%.c
+$(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 

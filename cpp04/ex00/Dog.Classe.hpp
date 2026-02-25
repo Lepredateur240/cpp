@@ -6,7 +6,7 @@
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:16:34 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/25 13:52:09 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:25:53 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define DOG_CLASSE_HPP
 
 #include "Animal.Classe.hpp"
+
 class Dog : public Animal{
 private:
 
@@ -25,7 +26,6 @@ public:
 	virtual ~Dog();
 
 	void	makeSound() const;
-
 };
 
 #endif

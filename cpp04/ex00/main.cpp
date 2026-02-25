@@ -6,7 +6,7 @@
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:15:32 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/25 13:53:24 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:26:29 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,14 @@ int main() {
 
     std::cout << std::endl << "--- 4. TESTS DE LA FORME CANONIQUE (COPIE) ---" << std::endl;
     Dog originalDog;
+
     std::cout << "Création d'une copie de Dog..." << std::endl;
     Dog copyDog(originalDog);
+
     std::cout << "Type de la copie : " << copyDog.getType() << std::endl;
     copyDog.makeSound();
 
     std::cout << std::endl << "--- 5. TEST DE DESTRUCTION (MÉMOIRE) ---" << std::endl;
-    // On vérifie que les destructeurs Dog/Cat sont bien appelés AVANT Animal
     delete meta;
     delete j;
     delete i;
@@ -47,7 +48,8 @@ int main() {
     {
         std::cout << "Entrée dans un bloc local..." << std::endl;
         Dog stackDog;
-    } // Le destructeur doit s'afficher ici automatiquement
+
+    }
     std::cout << "Sortie du bloc local." << std::endl;
 
     return 0;

@@ -6,7 +6,7 @@
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:16:34 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/25 14:24:09 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:30:33 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 class Dog : public Animal{
 private:
-	Brain *_ideas;
+	Brain	*_ideas;
 	
 public:
 	Dog();
@@ -28,7 +28,6 @@ public:
 	virtual ~Dog();
 
 	void	makeSound() const;
-
 };
 
 #endif

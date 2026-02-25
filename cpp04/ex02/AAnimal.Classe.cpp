@@ -6,7 +6,7 @@
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:19:35 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/25 14:45:52 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:31:16 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,18 @@
 
 AAnimal::AAnimal() : _type("AAnimal"){
 	std::cout << "AAnimal Default was created!" << std::endl;
+	return;
 }
 
 AAnimal::AAnimal(std::string type) : _type(type){
 	std::cout << "AAnimal " << type  << " was created!" << std::endl;
+	return;
 }
 
 AAnimal::AAnimal(const AAnimal& copy){
 	*this = copy;
 	std::cout << "AAnimal " << this->_type << " was copied!" << std::endl;
+	return;
 }
 
 AAnimal& AAnimal::operator=(const AAnimal& copy){
@@ -34,8 +37,9 @@ AAnimal& AAnimal::operator=(const AAnimal& copy){
 	return *this;
 }
 
-AAnimal::~AAnimal(){
+AAnimal::~AAnimal(void){
 	std::cout << "AAnimal " << this->_type << " was destroyed!" << std::endl;
+	return;
 }
 
 std::string AAnimal::getType() const{

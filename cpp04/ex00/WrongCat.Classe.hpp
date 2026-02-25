@@ -6,7 +6,7 @@
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 14:02:47 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/25 14:17:13 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:28:28 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define WRONGCAT_CLASSE_HPP
 
 #include "WrongAnimal.Classe.hpp"
+
 class WrongCat : public WrongAnimal{
 private:
 
@@ -25,7 +26,6 @@ public:
 	virtual ~WrongCat();
 
 	void	makeSound() const;
-
 };
 
 #endif

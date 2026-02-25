@@ -6,7 +6,7 @@
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:16:24 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/25 13:49:45 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:25:28 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CAT_CLASSE_HPP
 
 #include "Animal.Classe.hpp"
+
 class Cat : public Animal{
 private:
 
@@ -25,7 +26,6 @@ public:
 	virtual ~Cat();
 
 	void	makeSound() const;
-
 };
 
 #endif

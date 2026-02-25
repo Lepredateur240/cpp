@@ -6,7 +6,7 @@
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 14:07:49 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/25 14:15:42 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:27:44 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,18 @@
 
 WrongAnimal::WrongAnimal() : _type("WrongAnimal"){
 	std::cout << "WrongAnimal Default was created!" << std::endl;
+	return;
 }
 
 WrongAnimal::WrongAnimal(std::string type) : _type(type){
 	std::cout << "WrongAnimal " << type  << " was created!" << std::endl;
+	return;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal& copy){
 	*this = copy;
 	std::cout << "WrongAnimal " << this->_type << " was copied!" << std::endl;
+	return;
 }
 
 WrongAnimal& WrongAnimal::operator=(const WrongAnimal& copy){
@@ -34,8 +37,9 @@ WrongAnimal& WrongAnimal::operator=(const WrongAnimal& copy){
 	return *this;
 }
 
-WrongAnimal::~WrongAnimal(){
+WrongAnimal::~WrongAnimal(void){
 	std::cout << "WrongAnimal " << this->_type << " was destroyed!" << std::endl;
+	return;
 }
 
 void	WrongAnimal::makeSound() const{

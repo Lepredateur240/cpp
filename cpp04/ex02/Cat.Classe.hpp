@@ -6,7 +6,7 @@
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:16:24 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/25 14:44:57 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:32:30 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 class Cat : public AAnimal{
 private:
-	Brain *_ideas;
+	Brain	*_ideas;
 
 public:
 	Cat();
@@ -28,7 +28,6 @@ public:
 	virtual ~Cat();
 
 	void	makeSound() const;
-
 };
 
 #endif
