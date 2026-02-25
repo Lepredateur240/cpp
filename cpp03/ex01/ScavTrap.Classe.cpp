@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.Classe.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 22:34:59 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/24 22:54:20 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 13:28:17 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ ScavTrap::ScavTrap(const ScavTrap& copy) : ClapTrap(copy) {
 }
 
 ScavTrap& ScavTrap::operator=(const ScavTrap& copy){
-	if (this != &copy)
-	{
+	if (this != &copy){
 		this->_name = copy._name;
 		this->_hitPoints = copy._hitPoints;
 		this->_energyPoints = copy._energyPoints;
@@ -47,8 +46,7 @@ ScavTrap::~ScavTrap(){
 }
 
 void ScavTrap::attack(const std::string& target){
-	if (this->_energyPoints > 0 && this->_hitPoints > 0)
-	{
+	if (this->_energyPoints > 0 && this->_hitPoints > 0){
 		std::cout << "ScavTrap " << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!" << std::endl;
 		this->_energyPoints--;
 	}

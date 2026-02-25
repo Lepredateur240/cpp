@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.Classe.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 21:59:19 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/24 22:33:01 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 13:28:34 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ ClapTrap::ClapTrap(const ClapTrap& copy){
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& copy){
-	if (this != &copy)
-	{
+	if (this != &copy){
 		this->_name = copy._name;
 		this->_hitPoints = copy._hitPoints;
 		this->_energyPoints = copy._energyPoints;
@@ -42,8 +41,7 @@ ClapTrap::~ClapTrap(){
 }
 
 void ClapTrap::attack(const std::string& target){
-	if (this->_energyPoints > 0 && this->_hitPoints > 0)
-	{
+	if (this->_energyPoints > 0 && this->_hitPoints > 0){
 		std::cout << "ClapTrap " << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!" << std::endl;
 		this->_energyPoints--;
 	}
@@ -52,8 +50,7 @@ void ClapTrap::attack(const std::string& target){
 }
 
 void ClapTrap::takeDamage(unsigned int amount){
-	if (this->_hitPoints > 0)
-	{
+	if (this->_hitPoints > 0){
 		if (amount >= this->_hitPoints)
 			this->_hitPoints = 0;
 		else
@@ -67,8 +64,7 @@ void ClapTrap::takeDamage(unsigned int amount){
 
 
 void ClapTrap::beRepaired(unsigned int amount){
-	if (this->_energyPoints > 0 && this->_hitPoints > 0)
-	{
+	if (this->_energyPoints > 0 && this->_hitPoints > 0){
 		this->_hitPoints += amount;
 		this->_energyPoints--;
 		std::cout << "ClapTrap " << this->_name << " is repaired by " << amount << " points! Current HP: " << this->_hitPoints << std::endl;

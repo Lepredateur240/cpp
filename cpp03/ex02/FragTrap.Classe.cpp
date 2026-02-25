@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.Classe.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 22:56:12 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/24 22:59:20 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 13:28:40 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ FragTrap::FragTrap(const FragTrap& copy) : ClapTrap(copy) {
 }
 
 FragTrap& FragTrap::operator=(const FragTrap& copy){
-	if (this != &copy)
-	{
+	if (this != &copy){
 		this->_name = copy._name;
 		this->_hitPoints = copy._hitPoints;
 		this->_energyPoints = copy._energyPoints;
