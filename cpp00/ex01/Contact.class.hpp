@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.class.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 14:23:52 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/13 15:12:49 by masenche         ###   ########.fr       */
+/*   Updated: 2026/04/15 19:05:42 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,28 @@
 # define CONTACT_CLASS_H
 #include <string>
 class Contact{
+private:
+	std::string	_first_name;
+	std::string	_last_name;
+	std::string	_nickname;
+	std::string	_secret;
+	std::string	_number;
 	
 
 public:
 	Contact(void);
 	~Contact(void);
 
-	std::string	first_name;
-	std::string	last_name;
-	std::string	nickname;
-	std::string	secret;
-	std::string	number;
+	void		setFirstName(std::string str);
+	void		setLastName(std::string str);
+	void		setNickname(std::string str);
+	void		setSecret(std::string str);
+	void		setNumber(std::string str);
+	std::string	getFirstName(void);
+	std::string	getLastName(void);
+	std::string	getNickname(void);
+	std::string	getSecret(void);
+	std::string	getNumber(void);
 	
 };
 
