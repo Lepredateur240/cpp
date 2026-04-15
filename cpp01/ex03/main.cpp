@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 11:17:16 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/24 15:31:43 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:09:15 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
-#include "HumanB.hpp"
-#include "Weapon.hpp"
+#include "HumanA.Classe.hpp"
+#include "HumanB.Classe.hpp"
+#include "Weapon.Classe.hpp"
 
 int	main()
 {

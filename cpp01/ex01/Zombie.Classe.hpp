@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.Classe.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 09:44:54 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/24 15:32:37 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:04:38 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 class	Zombie{
 
 private:
-		std::string	_name;
+	std::string	_name;
 
 public:
 	Zombie();

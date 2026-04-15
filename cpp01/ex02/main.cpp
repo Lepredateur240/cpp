@@ -6,13 +6,14 @@
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 11:02:29 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/21 11:16:06 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:05:59 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
-int main(void){
+
+int	main(void){
 	std::string string = "HI THIS IS BRAIN";
 
 	std::string	*stringPTR = &string;

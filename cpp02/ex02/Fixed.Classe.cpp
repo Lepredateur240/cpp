@@ -3,28 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.Classe.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 15:17:33 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/24 18:11:10 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:18:46 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.Classe.hpp"
 
 Fixed::Fixed() : _fixedPointValue(0){
+	return;
 }
 
 Fixed::Fixed(const int fixedPointValue){
 	this->_fixedPointValue = fixedPointValue << _fractionalBits;
+	return;
 }
 
 Fixed::Fixed(const float fixedPointValueFloat){
 	this->_fixedPointValue = roundf(fixedPointValueFloat * (1 << _fractionalBits));
+	return;
 }
 
 Fixed::Fixed(const Fixed &copy){
 	*this = copy;
+	return;
 }
 
 Fixed &Fixed::operator=(const Fixed &copy){
@@ -33,7 +37,8 @@ Fixed &Fixed::operator=(const Fixed &copy){
 	return (*this);
 }
 
-Fixed::~Fixed(){
+Fixed::~Fixed(void){
+	return;
 }
 
 float	Fixed::toFloat(void) const{
@@ -104,6 +109,7 @@ Fixed &Fixed::operator++(){
 
 Fixed Fixed::operator++(int){
 	Fixed temp(*this);
+
 	this->_fixedPointValue++;
 	return (temp);
 }
@@ -115,6 +121,7 @@ Fixed &Fixed::operator--(){
 
 Fixed Fixed::operator--(int){
 	Fixed temp(*this);
+
 	this->_fixedPointValue--;
 	return (temp);
 }

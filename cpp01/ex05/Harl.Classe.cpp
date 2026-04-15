@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.Classe.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:21:53 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/24 15:30:57 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:15:22 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.Classe.hpp"
 
 Harl::Harl(){
+	return;
 }
 
-Harl::~Harl(){
+Harl::~Harl(void){
+	return;
 }
 
 void	Harl::DEBUG(){
@@ -37,10 +39,11 @@ void	Harl::ERROR(){
 void	Harl::complain(std::string level){
 	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	void (Harl::*ptr[4])() = {&Harl::DEBUG, &Harl::INFO, &Harl::WARNING, &Harl::ERROR};
+
 	for (size_t i = 0; i < 4; i++){
 		if (levels[i] == level){
 			(this->*ptr[i])();
-			return ;
+			return;
 		}
 	}
 	

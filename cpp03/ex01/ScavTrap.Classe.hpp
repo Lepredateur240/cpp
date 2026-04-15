@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.Classe.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 22:34:45 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/24 22:54:02 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:22:32 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,5 @@ public:
 	void	attack(const std::string& target);
 	void	guardGate();
 };
-
 
 #endif

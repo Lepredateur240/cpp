@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.Classe.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 22:56:02 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/24 22:58:22 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:23:47 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 class FragTrap : public ClapTrap {
 private:
-	
 
 public:
 	FragTrap();
@@ -26,8 +25,7 @@ public:
 	FragTrap& operator=(const FragTrap& copy);
 	~FragTrap();
 
-	void highFivesGuys();
+	void	highFivesGuys();
 };
-
 
 #endif

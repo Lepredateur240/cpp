@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.Classe.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 22:56:12 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/24 22:59:20 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:23:51 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ FragTrap::FragTrap() : ClapTrap() {
 	this->_energyPoints = 100;
 	this->_attackDamage = 30;
 	std::cout << "FragTrap Default constructor called" << std::endl;
+	return;
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name) {
@@ -24,15 +25,16 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name) {
 	this->_energyPoints = 100;
 	this->_attackDamage = 30;
 	std::cout << "FragTrap parameterized constructor called for " << name << std::endl;
+	return;
 }
 
 FragTrap::FragTrap(const FragTrap& copy) : ClapTrap(copy) {
 	std::cout << "FragTrap copy constructor called" << std::endl;
+	return;
 }
 
 FragTrap& FragTrap::operator=(const FragTrap& copy){
-	if (this != &copy)
-	{
+	if (this != &copy){
 		this->_name = copy._name;
 		this->_hitPoints = copy._hitPoints;
 		this->_energyPoints = copy._energyPoints;
@@ -42,10 +44,11 @@ FragTrap& FragTrap::operator=(const FragTrap& copy){
 	return *this;
 }
 
-FragTrap::~FragTrap(){
+FragTrap::~FragTrap(void){
 	std::cout << "FragTrap " << this->_name << " destroyed!" << std::endl;
+	return;
 }
 
-void FragTrap::highFivesGuys(){
+void	FragTrap::highFivesGuys(){
 	std::cout << "FragTrap " << this->_name << " is requesting a high five!" << std::endl;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 15:16:49 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/24 22:59:37 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:24:05 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ int	main(void) {
 	a.beRepaired(3);
 
 	ScavTrap c("ScavTrapC");
+
 	c.attack("ClapTrapA");
 	c.guardGate();
 
 	FragTrap d("FragTrapD");
+
 	d.attack("ClapTrapB");
 	d.highFivesGuys();
-	return 0;
+	return (0);
 }

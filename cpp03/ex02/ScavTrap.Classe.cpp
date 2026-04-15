@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.Classe.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 22:34:59 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/24 22:54:20 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:24:23 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ ScavTrap::ScavTrap() : ClapTrap() {
     this->_energyPoints = 50;
     this->_attackDamage = 20;
     std::cout << "ScavTrap Default constructor called" << std::endl;
+	return;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
@@ -24,15 +25,16 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
     this->_energyPoints = 50;
     this->_attackDamage = 20;
     std::cout << "ScavTrap parameterized constructor called for " << name << std::endl;
+	return;
 }
 
 ScavTrap::ScavTrap(const ScavTrap& copy) : ClapTrap(copy) {
     std::cout << "ScavTrap copy constructor called" << std::endl;
+	return;
 }
 
 ScavTrap& ScavTrap::operator=(const ScavTrap& copy){
-	if (this != &copy)
-	{
+	if (this != &copy){
 		this->_name = copy._name;
 		this->_hitPoints = copy._hitPoints;
 		this->_energyPoints = copy._energyPoints;
@@ -42,13 +44,13 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& copy){
 	return *this;
 }
 
-ScavTrap::~ScavTrap(){
+ScavTrap::~ScavTrap(void){
 	std::cout << "ScavTrap " << this->_name << " destroyed!" << std::endl;
+	return;
 }
 
 void ScavTrap::attack(const std::string& target){
-	if (this->_energyPoints > 0 && this->_hitPoints > 0)
-	{
+	if (this->_energyPoints > 0 && this->_hitPoints > 0){
 		std::cout << "ScavTrap " << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!" << std::endl;
 		this->_energyPoints--;
 	}
@@ -56,6 +58,6 @@ void ScavTrap::attack(const std::string& target){
 		std::cout << "ScavTrap " << this->_name << " cannot attack!" << std::endl;
 }
 
-void ScavTrap::guardGate(){
+void	ScavTrap::guardGate(){
 	std::cout << "ScavTrap " << this->_name << " is now in Gate keeper mode!" << std::endl;
 }

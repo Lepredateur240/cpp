@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.Classe.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:21:57 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/24 15:29:15 by masenche         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:15:01 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ private:
 public:
 	Harl();
 	~Harl();
+
 	void	complain(std::string level);
 	
 };
