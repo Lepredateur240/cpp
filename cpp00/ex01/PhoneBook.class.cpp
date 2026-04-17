@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.class.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 14:25:42 by masenche          #+#    #+#             */
-/*   Updated: 2026/04/15 20:27:35 by masenche         ###   ########.fr       */
+/*   Updated: 2026/04/17 16:27:12 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <ctype.h>
 
 PhoneBook::PhoneBook(void){
-	_index = 0;
+	_index =  -1;
 	return;
 }
 
@@ -25,6 +25,8 @@ PhoneBook::~PhoneBook(void){
 }
 
 void	PhoneBook::ADD(){
+	if (_index == -1)
+		_index = 0;
 	Contact &current = _contact[_index % 8];
 	Contact temp;
 	std::string temp_char;
@@ -70,7 +72,7 @@ void	PhoneBook::ADD(){
 		return;
 	}
 	temp.setSecret(temp_char);
-	current = temp;	
+	current = temp;
 	_index++;
 	std::cout << "Contact added successfully!" << std::endl;
 }
@@ -79,7 +81,7 @@ void	PhoneBook::SEARCH() {
 	std::string input;
 	int 		i = 0;
 
-	if (_index == 0) {
+	if (_index == -1) {
 		std::cout << "No contacts to display!" << std::endl;
 		return;
 	}
@@ -87,23 +89,31 @@ void	PhoneBook::SEARCH() {
 			  << "|" << std::setw(10) << "First Name"
 			  << "|" << std::setw(10) << "Last Name"
 			  << "|" << std::setw(10) << "Nickname" << "|" << std::endl;
-	for (int i = 0; i < _index; i++) {
+	for (int i = 0; i < 8; i++) {
+		if (!_contact[i].getFirstName().empty()) {
 		std::cout << "|" << std::setw(10) << i
 				  << "|" << std::setw(10) << formatColumn(_contact[i].getFirstName())
 				  << "|" << std::setw(10) << formatColumn(_contact[i].getLastName())
 				  << "|" << std::setw(10) << formatColumn(_contact[i].getNickname()) << "|" << std::endl;
+		}
 	}
 	std::cout << "\nEnter the index of the contact to display: ";
 	std::getline(std::cin, input);
-	if ((input.length() == 1 && input[0] >= '0' && input[0] <= '7') && input [0] < _index + '0'){
+	if ((input.length() == 1 && input[0] >= '0' && input[0] <= '7')){
 		i = input[0] - '0';
-		std::cout << "First Name: " << _contact[i].getFirstName() << std::endl;
-		std::cout << "Last Name : " << _contact[i].getLastName() << std::endl;
-		std::cout << "Nickname  : " << _contact[i].getNickname() << std::endl;
-		std::cout << "Phone     : " << _contact[i].getNumber() << std::endl;
-		std::cout << "Secret    : " << _contact[i].getSecret() << std::endl;
-	} else
-		std::cout << "Invalid index!" << std::endl;
+		if (!_contact[i].getFirstName().empty())
+			std::cout << "First Name: " << _contact[i].getFirstName() << std::endl;
+		if (!_contact[i].getLastName().empty())
+			std::cout << "Last Name : " << _contact[i].getLastName() << std::endl;
+		if (!_contact[i].getNickname().empty())
+			std::cout << "Nickname  : " << _contact[i].getNickname() << std::endl;
+		if (!_contact[i].getNumber().empty())
+			std::cout << "Phone     : " << _contact[i].getNumber() << std::endl;
+		if (!_contact[i].getSecret().empty())
+			std::cout << "Secret    : " << _contact[i].getSecret() << std::endl;
+		else
+			std::cout << "Invalid index!" << std::endl;
+	}
 }
 
 std::string	PhoneBook::formatColumn(std::string str){
