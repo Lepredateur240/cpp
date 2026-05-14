@@ -6,15 +6,12 @@
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 09:46:03 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/25 15:00:54 by masenche         ###   ########.fr       */
+/*   Updated: 2026/05/05 14:05:03 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.Classe.hpp"
 #include <sstream>
-
-Zombie*	newZombie(std::string name);
-void	randomChump(std::string name);
 
 int	main(void){
 	std::string	name[8];

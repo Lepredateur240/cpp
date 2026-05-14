@@ -14,7 +14,7 @@
 #include "Weapon.Classe.hpp"
 #include <iostream>
 
-HumanA::HumanA(std::string name, Weapon &type_weapon) : _name(name), _weapon(type_weapon){
+HumanA::HumanA(const std::string& name, Weapon& type_weapon) : _name(name), _weapon(&type_weapon){
 	attack();
 	return;
 }
@@ -23,6 +23,6 @@ HumanA::~HumanA(void){
 	return;
 }
 
-void	HumanA::attack(void){
-	std::cout << _name << "> attacks with their " << _weapon.getType() << std::endl ;
+void	HumanA::attack(void) const{
+	std::cout << _name << "> attacks with their " << _weapon->getType() << std::endl ;
 }

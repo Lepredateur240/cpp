@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 15:16:49 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/24 22:41:16 by masenche         ###   ########.fr       */
+/*   Updated: 2026/05/05 15:47:06 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(void) {
 	a.takeDamage(5);
 	a.beRepaired(3);
 
+	ScavTrap t;
 	ScavTrap c("ScavTrapC");
 	c.attack("ClapTrapA");
 	c.guardGate();

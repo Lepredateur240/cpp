@@ -6,7 +6,7 @@
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 11:17:16 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/25 15:09:15 by masenche         ###   ########.fr       */
+/*   Updated: 2026/05/05 14:20:32 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ int	main()
 		bob.attack();
 		club.setType("some other type of club");
 		bob.attack();
+	}
+	{
+		HumanB jerry("Jerry");
+		jerry.attack();
 	}
 	{
 		Weapon club = Weapon("crude spiked club");

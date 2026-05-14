@@ -6,7 +6,7 @@
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 15:16:49 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/25 15:24:05 by masenche         ###   ########.fr       */
+/*   Updated: 2026/05/05 16:06:09 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@ int	main(void) {
 	a.takeDamage(5);
 	a.beRepaired(3);
 
+	ScavTrap t;
 	ScavTrap c("ScavTrapC");
 
 	c.attack("ClapTrapA");
 	c.guardGate();
-
+	FragTrap tt;
 	FragTrap d("FragTrapD");
 
 	d.attack("ClapTrapB");

@@ -6,7 +6,7 @@
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:42:36 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/25 15:43:02 by masenche         ###   ########.fr       */
+/*   Updated: 2026/05/06 20:21:57 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,56 @@
 #include "Cat.Classe.hpp"
 #include <iostream>
 
-int main() {
-	// const AAnimal* meta = new AAnimal();
-	const AAnimal* j = new Dog(); //
-	const AAnimal* i = new Cat(); //
+int main()
+{
+    std::cout << "\033[34m=== 1. SUBJECT TEST: ARRAY OF AANIMALS ===\033[0m" << std::endl;
+    const int arraySize = 6;
+    AAnimal* animals[arraySize];
 
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound();
-	j->makeSound();
-	delete j;
-	delete i;
-	return (0);
+    std::cout << "\n--> Filling the array (50% Dogs, 50% Cats):" << std::endl;
+    for (int i = 0; i < arraySize; i++) {
+        if (i < arraySize / 2) {
+            std::cout << "Creating Dog " << i << ":" << std::endl;
+            animals[i] = new Dog();
+        } else {
+            std::cout << "Creating Cat " << i << ":" << std::endl;
+            animals[i] = new Cat();
+        }
+    }
+
+    std::cout << "\n--> Checking sounds (Polymorphism):" << std::endl;
+    for (int i = 0; i < arraySize; i++) {
+        animals[i]->makeSound();
+    }
+
+    std::cout << "\n--> Destroying the array (Checking destructors):" << std::endl;
+    for (int i = 0; i < arraySize; i++) {
+        delete animals[i]; 
+    }
+
+    std::cout << "\n\033[32m=== 2. DEEP COPY TESTS ===\033[0m" << std::endl;
+    std::cout << "--> Testing Dogs:" << std::endl;
+    {
+        Dog basicDog;
+        {
+            Dog tmpDog = basicDog; 
+        }
+        std::cout << "If this message appears without a crash, the Dog copy is deep!" << std::endl;
+    } 
+
+    std::cout << "\n--> Testing Cats (Assignment):" << std::endl;
+    {
+        Cat catOne;
+        Cat catTwo;
+        
+        catTwo = catOne; 
+    }
+    std::cout << "Successful destruction without double-free: the Cat copy is deep!" << std::endl;
+
+    std::cout << "\n\033[31m=== 3. ABSTRACT CLASS INSTANTIATION TEST ===\033[0m" << std::endl;
+    std::cout << "Uncommenting the following line in the code would cause a compilation error:" << std::endl;
+    // const AAnimal* meta = new AAnimal();
+    std::cout << "// const AAnimal* meta = new AAnimal(); -> Cannot instantiate an abstract class!" << std::endl;
+
+    return 0;
 }

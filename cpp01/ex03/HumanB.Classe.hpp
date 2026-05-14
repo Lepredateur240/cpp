@@ -6,7 +6,7 @@
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 11:21:01 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/25 15:10:30 by masenche         ###   ########.fr       */
+/*   Updated: 2026/05/05 14:16:22 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ private:
 	Weapon		*_weapon;
 
 public:
-	HumanB(std::string name);
+	HumanB(const std::string& name);
 	~HumanB();
 
-	void	attack(void);
+	void	attack(void) const;
 	void	setWeapon(Weapon &weapon);
 };
 #endif

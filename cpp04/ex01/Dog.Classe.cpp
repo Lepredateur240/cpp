@@ -6,7 +6,7 @@
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 13:16:30 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/25 15:30:22 by masenche         ###   ########.fr       */
+/*   Updated: 2026/05/06 20:19:35 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Dog::Dog(std::string type) : Animal(type){
 	return;
 }
 
-Dog::Dog(const Dog& copy){
+Dog::Dog(const Dog& copy) : Animal(copy){
 	this->_ideas = new Brain();
 	*(this->_ideas) = *(copy._ideas);
 	std::cout << "Dog " << this->_type << " was copied with its own Brain!" << std::endl;

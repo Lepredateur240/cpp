@@ -6,7 +6,7 @@
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 09:44:54 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/25 15:04:38 by masenche         ###   ########.fr       */
+/*   Updated: 2026/05/05 14:06:23 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,10 @@ public:
 	Zombie();
 	~Zombie(void);
 
-	void	announce(void);
-	void	setName(std::string);
-	Zombie*	zombieHorde( int N, std::string name );
+	void	announce(void) const;
+	void	setName(const std::string& name);
 };
 
-Zombie*	zombieHorde(int N, std::string name);
+ Zombie*	zombieHorde(int N, const std::string& name);
 
 #endif

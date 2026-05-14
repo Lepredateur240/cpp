@@ -6,7 +6,7 @@
 /*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 09:44:54 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/21 10:37:09 by masenche         ###   ########.fr       */
+/*   Updated: 2026/05/05 14:03:54 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,10 @@ public:
 	Zombie(std::string _name);
 	~Zombie(void);
 
-	void	announce(void);
-	Zombie	*newZombie(std::string name);
-	void	randomChump(std::string name);
+	void	announce(void) const;
 };
 
-
+Zombie	*newZombie(const std::string& name);
+void	randomChump(const std::string& name);
 
 #endif

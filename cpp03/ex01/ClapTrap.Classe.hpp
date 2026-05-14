@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.Classe.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masenche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 21:59:45 by masenche          #+#    #+#             */
-/*   Updated: 2026/02/24 22:53:54 by masenche         ###   ########.fr       */
+/*   Updated: 2026/05/05 15:44:01 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ public:
 	ClapTrap(std::string name);
 	ClapTrap(const ClapTrap& copy);
 	ClapTrap& operator=(const ClapTrap& copy);
-	~ClapTrap();
+	virtual ~ClapTrap();
 
-	void	attack(const std::string& target);
+	virtual	void attack(const std::string& target);
 	void	takeDamage(unsigned int amount);
 	void	beRepaired(unsigned int amount);
 };
