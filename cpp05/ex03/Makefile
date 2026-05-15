@@ -1,6 +1,6 @@
 CC          := c++
 SHELL       := /bin/bash
-NAME        := needform
+NAME        := intern
 
 # Directories
 OBJ_DIR       := obj
@@ -12,6 +12,7 @@ SRCS :=	main.cpp \
 		ShrubberyCreationForm.cpp \
 		RobotomyRequestForm.cpp \
 		PresidentialPardonForm.cpp \
+		Intern.cpp \
 
 # Object mapping
 OBJS       := $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
@@ -34,6 +35,7 @@ $(OBJ_DIR)/%.o: %.cpp
 # Clean rules
 clean:
 	rm -rf $(OBJ_DIR)
+	rm -rf Garden_shrubbery
 	rm -rf home_shrubbery
 
 fclean: clean

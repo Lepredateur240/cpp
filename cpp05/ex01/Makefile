@@ -1,16 +1,14 @@
 CC          := c++
 SHELL       := /bin/bash
-NAME        := brain
+NAME        := signform
 
 # Directories
 OBJ_DIR       := obj
 
 # Files
-SRCS := main.cpp \
-		Cat.Classe.cpp \
-		Dog.Classe.cpp \
-		Animal.Classe.cpp \
-		Brain.Classe.cpp
+SRCS :=	main.cpp \
+		Bureaucrat.cpp \
+		Form.cpp \
 
 # Object mapping
 OBJS       := $(SRCS:%.cpp=$(OBJ_DIR)/%.o)

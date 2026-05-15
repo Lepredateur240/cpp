@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include <iostream>
 
 int main(void)
@@ -28,33 +29,31 @@ int main(void)
     } catch (std::exception &e) {
         std::cerr << "Erreur attrapee : " << e.what() << std::endl;
     }
-    std::cout << "\n--- TEST 2: Creation avec grade trop bas (151) ---" << std::endl;
+
+    std::cout << "\n--- TEST 5: Form Sign ---" << std::endl;
     try {
-        Bureaucrat b("Bob", 151); // Devrait lancer GradeTooLowException
-        std::cout << b;
+        Bureaucrat boss("Boss", 1);
+        Bureaucrat intern("Intern", 150);
+        Form f1("Formulaire A", 50, 50);
+        Form f2("Formulaire B", 1, 1);
+
+        std::cout << f1;
+        std::cout << f2;
+
+        std::cout << "\nL'interne essaie de signer Formulaire A (requis: 50):" << std::endl;
+        intern.signForm(f1);
+
+        std::cout << "\nLe boss essaie de signer Formulaire A (requis: 50):" << std::endl;
+        boss.signForm(f1);
+        std::cout << "Etat de f1 apres signature : " << (f1.getIsSigned() ? "Signe" : "Non signe") << std::endl;
+
+        std::cout << "\nLe boss essaie de signer Formulaire B (requis: 1):" << std::endl;
+        boss.signForm(f2);
+        std::cout << "Etat de f2 apres signature : " << (f2.getIsSigned() ? "Signe" : "Non signe") << std::endl;
+
     } catch (std::exception &e) {
-        std::cerr << "Erreur attrapee : " << e.what() << std::endl;
+        std::cerr << "Exception imprevue : " << e.what() << std::endl;
     }
 
-    std::cout << "\n--- TEST 3: Creation avec grade trop haut (0) ---" << std::endl;
-    try {
-        Bureaucrat c("Charlie", 0); // Devrait lancer GradeTooHighException
-        std::cout << c;
-    } catch (std::exception &e) {
-        std::cerr << "Erreur attrapee : " << e.what() << std::endl;
-    }
-    std::cout << "\n--- TEST 4: DownGrade jusqu'a l'echec ---" << std::endl;
-    try {
-        Bureaucrat d("David", 149);
-        std::cout << d;
-        d.downGrade(); // Passe a 150
-        std::cout << "Apres 1er downGrade : " << d;
-        
-        std::cout << "Tentative d'un downGrade de trop..." << std::endl;
-        d.downGrade(); // Devrait lancer GradeTooLowException
-        std::cout << "Cette ligne ne doit pas s'afficher !" << std::endl;
-    } catch (std::exception &e) {
-        std::cerr << "Erreur attrapee : " << e.what() << std::endl;
-    }
     return 0;
 }
