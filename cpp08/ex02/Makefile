@@ -1,14 +1,11 @@
 CC          := c++
-SHELL       := /bin/bash
-NAME        := bureaucrat
+NAME        := mutantstack
 
 # Directories
 OBJ_DIR       := obj
 
 # Files
-SRCS := main.cpp \
-		Bureaucrat.cpp
-		
+SRCS :=	main.cpp
 
 # Object mapping
 OBJS       := $(SRCS:%.cpp=$(OBJ_DIR)/%.o)

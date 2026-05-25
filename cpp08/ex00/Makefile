@@ -1,13 +1,11 @@
 CC          := c++
-SHELL       := /bin/bash
-NAME        := bureaucrat
+NAME        := easyfind
 
 # Directories
 OBJ_DIR       := obj
 
 # Files
-SRCS := main.cpp \
-		Bureaucrat.cpp
+SRCS :=	main.cpp \
 		
 
 # Object mapping

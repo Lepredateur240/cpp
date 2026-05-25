@@ -1,13 +1,12 @@
 CC          := c++
 SHELL       := /bin/bash
-NAME        := bureaucrat
+NAME        := iter
 
 # Directories
 OBJ_DIR       := obj
 
 # Files
 SRCS := main.cpp \
-		Bureaucrat.cpp
 		
 
 # Object mapping

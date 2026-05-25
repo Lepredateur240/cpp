@@ -1,14 +1,12 @@
 CC          := c++
-SHELL       := /bin/bash
-NAME        := bureaucrat
+NAME        := RPN
 
 # Directories
 OBJ_DIR       := obj
 
 # Files
-SRCS := main.cpp \
-		Bureaucrat.cpp
-		
+SRCS :=	main.cpp \
+		RPN.cpp
 
 # Object mapping
 OBJS       := $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
