@@ -1,12 +1,12 @@
 CC          := c++
-NAME        := span
+NAME        := PmergeMe
 
 # Directories
 OBJ_DIR       := obj
 
 # Files
 SRCS :=	main.cpp \
-		Span.cpp
+		PmergeMe.cpp
 
 # Object mapping
 OBJS       := $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
@@ -22,7 +22,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 # Compilation Rule Mandatory
-$(OBJ_DIR)/%.o: %.cpp
+$(OBJ_DIR)/%.o: %.cpp PmergeMe.hpp PmergeMe.tpp
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
