@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ford-Johnson (PmergeMe) Visualizer</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-primary: #0b0f19;
+      --bg-secondary: #161d30;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --accent: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.4);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --info: #06b6d4;
+      --border-color: #2e3c5a;
+      --card-bg: rgba(22, 29, 48, 0.7);
+      --font-sans: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'Fira Code', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--bg-secondary), #0e1424);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      background: linear-gradient(to right, #a78bfa, #8b5cf6, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    main {
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 350px 1fr;
+      gap: 2rem;
+    }
+
+    /* Column Left: Controls & Algorithm Details */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .card h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    label {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    input[type="text"] {
+      background-color: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-primary);
+      padding: 0.75rem 1rem;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    input[type="text"]:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25);
+    }
+
+    .btn-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    button {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    button:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: var(--text-secondary);
+    }
+
+    button.btn-accent {
+      background: linear-gradient(135deg, var(--accent), #7c3aed);
+      border: none;
+      color: white;
+    }
+
+    button.btn-accent:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    .ctrl-buttons {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+
+    .slider-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .slider-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      accent-color: var(--accent);
+    }
+
+    .algo-stats {
+      font-size: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed rgba(255,255,255,0.05);
+      padding-bottom: 0.25rem;
+    }
+
+    .stat-value {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* Column Right: Visualization Workspace */
+    .workspace {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    /* Explanation Banner */
+    .explanation-card {
+      border-left: 4px solid var(--accent);
+      background-color: rgba(139, 92, 246, 0.05);
+    }
+
+    .explanation-text {
+      font-size: 1.1rem;
+      color: var(--text-primary);
+    }
+
+    /* Workspace visualization areas */
+    .visualizer-area {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      min-height: 400px;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(15, 23, 42, 0.4);
+      border: 1px dashed var(--border-color);
+      border-radius: 16px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Container for arrays */
+    .array-container {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .array-title {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+      text-align: center;
+      width: 100%;
+    }
+
+    .array-section {
+      width: 100%;
+      background: rgba(22, 29, 48, 0.4);
+      border: 1px solid rgba(255,255,255,0.03);
+      padding: 1.25rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    /* Box element */
+    .num-box {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #2e3c5a, #1e293b);
+      border: 2px solid var(--border-color);
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      font-weight: 700;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Highlight classes */
+    .num-box.active {
+      background: linear-gradient(135deg, var(--accent), #7c3aed);
+      border-color: #a78bfa;
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+      transform: scale(1.1);
+      z-index: 10;
+    }
+
+    .num-box.leftover {
+      background: linear-gradient(135deg, var(--danger), #be123c);
+      border-color: #fda4af;
+      box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+    }
+
+    .num-box.comparing {
+      background: linear-gradient(135deg, var(--success), #047857);
+      border-color: #6ee7b7;
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+      transform: scale(1.08);
+      z-index: 5;
+    }
+
+    .num-box.binary-mid {
+      background: linear-gradient(135deg, var(--info), #0e7490);
+      border-color: #67e8f9;
+      box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
+      transform: scale(1.08);
+    }
+
+    .num-box.binary-bound {
+      border-color: var(--info);
+      background-color: rgba(6, 182, 212, 0.15);
+    }
+
+    .num-box.pending-element {
+      background: linear-gradient(135deg, var(--warning), #b45309);
+      border-color: #fde047;
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+    }
+
+    .num-box.inserted-recently {
+      animation: pulse-border 1.5s infinite;
+    }
+
+    @keyframes pulse-border {
+      0% { box-shadow: 0 0 0 0px rgba(16, 185, 129, 0.7); }
+      100% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+    }
+
+    /* Pairs Container & Animations */
+    .pairs-grid {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .pair-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid var(--border-color);
+      padding: 0.75rem;
+      border-radius: 12px;
+      align-items: center;
+      transition: all 0.3s ease;
+      animation: slide-down-card 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes slide-down-card {
+      0% { transform: translateY(-30px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .pair-card.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+      transform: scale(1.05);
+    }
+
+    .pair-slot {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      height: 50px;
+    }
+
+    .pair-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      width: 45px;
+    }
+
+    /* Swap Animations */
+    .swap-down {
+      animation: swap-down-anim 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    .swap-up {
+      animation: swap-up-anim 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes swap-down-anim {
+      0% { transform: translateY(-58px); }
+      50% { transform: translateX(30px) translateY(-29px) scale(1.05); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes swap-up-anim {
+      0% { transform: translateY(58px); }
+      50% { transform: translateX(-30px) translateY(29px) scale(1.05); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Index markers underneath */
+    .index-marker {
+      position: absolute;
+      bottom: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-weight: 600;
+    }
+
+    .range-indicator {
+      position: absolute;
+      bottom: -35px;
+      height: 4px;
+      background-color: var(--info);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    /* Progress bar */
+    .progress-bar-container {
+      width: 100%;
+      height: 6px;
+      background-color: var(--bg-secondary);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(to right, var(--accent), var(--info));
+      transition: width 0.3s ease;
+    }
+
+    .step-counter {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Jacobsthal helper section */
+    .jacob-list {
+      display: flex;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .jacob-item {
+      background-color: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--warning);
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+    }
+
+    .jacob-item.active {
+      background-color: var(--warning);
+      color: var(--bg-primary);
+      font-weight: 700;
+    }
+
+    /* Legend */
+    .legend {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .legend-color {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
+
+    /* Recursion Stack Indicator */
+    .recursion-stack {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 0.75rem;
+    }
+
+    .stack-badge {
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      padding: 0.2rem 0.65rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .stack-badge.active {
+      background-color: var(--accent);
+      border-color: #a78bfa;
+      color: white;
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Visualisateur Algorithme Ford-Johnson</h1>
+    <div class="subtitle">Tri par Fusion-Insertion (Merge-Insertion Sort) — Module C++ 09 Exercise 02</div>
+    <div class="recursion-stack" id="rec-stack-display">
+      <!-- Injected recursively -->
+    </div>
+  </header>
+
+  <main>
+    <!-- Left Column: Controls and Info -->
+    <div class="sidebar">
+      <!-- Input Card -->
+      <div class="card">
+        <h2>Séquence d'entrée</h2>
+        <div class="form-group">
+          <label for="array-input">Nombres à trier</label>
+          <input type="text" id="array-input" value="3, 5, 9, 7, 4">
+        </div>
+        <div class="btn-group">
+          <button id="btn-rand-5" onclick="setPreset(5)">Preset 5</button>
+          <button id="btn-rand-15" onclick="setPreset(15)">Preset 15</button>
+        </div>
+        <button class="btn-accent" style="width: 100%;" id="btn-init" onclick="initSimulation()">Initialiser le Tri</button>
+      </div>
+
+      <!-- Controls Card -->
+      <div class="card">
+        <h2>Contrôles</h2>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+        <div class="step-counter">
+          <span id="step-index">Étape: 0/0</span>
+          <span id="step-phase">Phase: En attente</span>
+        </div>
+        
+        <div class="ctrl-buttons">
+          <button id="btn-prev" onclick="prevStep()" disabled>&larr;</button>
+          <button id="btn-play" onclick="togglePlay()" disabled>Lecture</button>
+          <button id="btn-next" onclick="nextStep()" disabled>&rarr;</button>
+        </div>
+
+        <div class="slider-group">
+          <label for="speed-slider">Vitesse d'animation</label>
+          <div class="slider-container">
+            <input type="range" id="speed-slider" min="100" max="2000" step="100" value="800" onchange="updateSpeed()">
+            <span style="font-size: 0.85rem; min-width: 50px;" id="speed-val">800ms</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Theory Card -->
+      <div class="card">
+        <h2>Théorie Ford-Johnson</h2>
+        <div class="algo-stats">
+          <div class="stat-row">
+            <span>Séquence de Jacobsthal :</span>
+          </div>
+          <div class="jacob-list" id="jacob-seq-display">
+            <!-- Dynamically populated -->
+          </div>
+          <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">
+            La formule de Jacobsthal est : <br>
+            <code style="color: var(--warning); font-family: var(--font-mono);">J(n) = J(n-1) + 2*J(n-2)</code> <br>
+            Elle donne l'ordre d'insertion optimal pour minimiser mathématiquement le nombre de comparaisons dans la recherche binaire.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Visualization Workspace -->
+    <div class="workspace">
+      <!-- Detailed Explanation -->
+      <div class="card explanation-card">
+        <h2>Explications de l'étape</h2>
+        <div class="explanation-text" id="step-desc">
+          Initialisez la simulation en saisissant une liste d'entiers positifs séparés par des virgules ou des espaces, puis cliquez sur <strong>"Initialiser le Tri"</strong>.
+        </div>
+      </div>
+
+      <!-- Main Visual Area -->
+      <div class="visualizer-area">
+        <!-- Legend -->
+        <div class="legend" id="visual-legend" style="display: none;">
+          <div class="legend-item">
+            <div class="legend-color" style="background: linear-gradient(135deg, var(--accent), #7c3aed);"></div>
+            <span>Main Chain (Large)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background: linear-gradient(135deg, var(--warning), #b45309);"></div>
+            <span>Pending (Small)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background: linear-gradient(135deg, var(--danger), #be123c);"></div>
+            <span>Orphelin / Leftover</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background: linear-gradient(135deg, var(--success), #047857);"></div>
+            <span>Élément Actif / Comparé</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background: linear-gradient(135deg, var(--info), #0e7490);"></div>
+            <span>Milieu (Binary Search)</span>
+          </div>
+        </div>
+
+        <!-- Section container for dynamic views -->
+        <div id="vis-workspace" style="width: 100%; display: flex; flex-direction: column; gap: 1.5rem;">
+          <!-- Content injected dynamically -->
+          <div style="text-align: center; color: var(--text-secondary);">
+            En attente d'initialisation...
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let currentStepIndex = 0;
+    let steps = [];
+    let isPlaying = false;
+    let playInterval = null;
+    let animationSpeed = 800;
+
+    // Set sample array
+    function setPreset(size) {
+      let arr = [];
+      if (size === 5) {
+        arr = [3, 5, 9, 7, 4];
+      } else {
+        while (arr.length < size) {
+          let num = Math.floor(Math.random() * 99) + 1;
+          if (!arr.includes(num)) {
+            arr.push(num);
+          }
+        }
+      }
+      document.getElementById('array-input').value = arr.join(', ');
+      initSimulation();
+    }
+
+    function updateSpeed() {
+      animationSpeed = parseInt(document.getElementById('speed-slider').value);
+      document.getElementById('speed-val').innerText = animationSpeed + 'ms';
+      if (isPlaying) {
+        clearInterval(playInterval);
+        playInterval = setInterval(nextStep, animationSpeed);
+      }
+    }
+
+    function togglePlay() {
+      const btn = document.getElementById('btn-play');
+      if (isPlaying) {
+        isPlaying = false;
+        btn.innerText = 'Lecture';
+        clearInterval(playInterval);
+      } else {
+        isPlaying = true;
+        btn.innerText = 'Pause';
+        playInterval = setInterval(nextStep, animationSpeed);
+      }
+    }
+
+    function generateJacobsthalSequence(max) {
+      let seq = [1, 3];
+      while (true) {
+        let next = seq[seq.length - 1] + 2 * seq[seq.length - 2];
+        seq.push(next);
+        if (next > max) break;
+      }
+      return seq.filter(x => x <= max);
+    }
+
+    // Global step storage for recursion trace
+    let globalSteps = [];
+
+    function initSimulation() {
+      if (isPlaying) togglePlay();
+
+      const inputVal = document.getElementById('array-input').value;
+      let arr = inputVal.split(/[\s,]+/).map(x => parseInt(x.trim())).filter(x => !isNaN(x) && x > 0);
+      
+      if (arr.length === 0) {
+        alert("Veuillez entrer une liste d'entiers positifs valide.");
+        return;
+      }
+
+      globalSteps = [];
+      runFJRecursion(arr, 0);
+
+      steps = globalSteps;
+      currentStepIndex = 0;
+      isPlaying = false;
+
+      document.getElementById('btn-prev').disabled = false;
+      document.getElementById('btn-next').disabled = false;
+      document.getElementById('btn-play').disabled = false;
+      document.getElementById('visual-legend').style.display = 'flex';
+
+      let jacobDisplay = document.getElementById('jacob-seq-display');
+      let maxPending = Math.floor(arr.length / 2) - 1;
+      if (maxPending > 0) {
+        let jSeq = generateJacobsthalSequence(maxPending);
+        jacobDisplay.innerHTML = jSeq.map(val => `<span class="jacob-item" id="jacob-${val}">${val}</span>`).join(' ');
+      } else {
+        jacobDisplay.innerHTML = '<span style="color: var(--text-secondary);">Pas d\'éléments pending</span>';
+      }
+
+      renderCurrentStep();
+    }
+
+    // RECURSIVE FORD-JOHNSON STEP GENERATOR
+    function runFJRecursion(arr, depth = 0) {
+      // Step 0: Initial state at this depth
+      globalSteps.push({
+        depth: depth,
+        phase: `Initialisation N. ${depth}`,
+        description: `<strong>[Niveau de récursion ${depth}]</strong> Début du tri pour le sous-ensemble : <strong>[${arr.join(', ')}]</strong>.`,
+        container: [...arr],
+        leftover: null,
+        pairs: [],
+        pending: [],
+        mainChain: [],
+        highlights: { container: [...Array(arr.length).keys()] }
+      });
+
+      if (arr.length <= 1) {
+        globalSteps.push({
+          depth: depth,
+          phase: `Cas de Base N. ${depth}`,
+          description: `<strong>[Niveau de récursion ${depth}]</strong> Taille du sous-ensemble &le; 1. Il est déjà trié de fait. Retour au niveau parent.`,
+          container: [...arr],
+          leftover: null,
+          pairs: [],
+          pending: [],
+          mainChain: [...arr],
+          highlights: { mainChain: [0] }
+        });
+        return [...arr];
+      }
+
+      let currentArr = [...arr];
+      let leftover = null;
+      let hasLeftover = false;
+
+      // 1. Leftover
+      if (currentArr.length % 2 !== 0) {
+        leftover = currentArr.pop();
+        hasLeftover = true;
+        globalSteps.push({
+          depth: depth,
+          phase: `Orphelin N. ${depth}`,
+          description: `<strong>[Niveau de récursion ${depth}]</strong> La taille est impaire (${arr.length}). L'élément <strong>${leftover}</strong> est isolé pour être inséré à la fin.`,
+          container: [...currentArr],
+          leftover: leftover,
+          pairs: [],
+          pending: [],
+          mainChain: [],
+          highlights: { leftover: true }
+        });
+      }
+
+      // 2. Pairing
+      let pairs = [];
+      for (let i = 0; i < currentArr.length; i += 2) {
+        let a = currentArr[i];
+        let b = currentArr[i+1];
+        let large = Math.max(a, b);
+        let small = Math.min(a, b);
+
+        // 2.A: Grouping (original order)
+        pairs.push({ large: a, small: b, isSorted: false, swapAnim: false, id: i/2 });
+        
+        globalSteps.push({
+          depth: depth,
+          phase: `Regroupement N. ${depth}`,
+          description: `<strong>[Niveau de récursion ${depth}]</strong> Étape A : Regroupement de <strong>${a}</strong> et <strong>${b}</strong> dans une paire. <span style="color: var(--info);">Mouvement vers le tableau de paires...</span>`,
+          container: [...currentArr],
+          leftover: leftover,
+          pairs: JSON.parse(JSON.stringify(pairs)),
+          pending: [],
+          mainChain: [],
+          highlights: {
+            container: [i, i+1],
+            pairedIndices: [...Array(i).keys()],
+            pairs: [i/2]
+          }
+        });
+
+        // 2.B: Comparing & Ordering
+        pairs[pairs.length - 1] = { large: large, small: small, isSorted: true, swapAnim: (a < b), id: i/2 };
+        
+        let desc = `<strong>[Niveau de récursion ${depth}]</strong> Étape B : Comparaison de <strong>${a}</strong> et <strong>${b}</strong>. `;
+        if (a < b) {
+          desc += `Puisque <strong>${a} &lt; ${b}</strong>, ils permutent (le plus grand monte en haut). <strong style="color: var(--accent);">Visualise la permutation des cases !</strong>`;
+        } else {
+          desc += `Puisque <strong>${a} &ge; ${b}</strong>, l'ordre est déjà correct (le plus grand reste en haut).`;
+        }
+
+        globalSteps.push({
+          depth: depth,
+          phase: `Comparaison & Tri N. ${depth}`,
+          description: desc,
+          container: [...currentArr],
+          leftover: leftover,
+          pairs: JSON.parse(JSON.stringify(pairs)),
+          pending: [],
+          mainChain: [],
+          highlights: {
+            container: [i, i+1],
+            pairedIndices: [...Array(i).keys()],
+            pairs: [i/2]
+          }
+        });
+      }
+
+      pairs = pairs.map(p => ({ ...p, swapAnim: false }));
+
+      globalSteps.push({
+        depth: depth,
+        phase: `Couplage Terminé N. ${depth}`,
+        description: `<strong>[Niveau de récursion ${depth}]</strong> Couplage et tri interne des paires complétés.`,
+        container: [],
+        leftover: leftover,
+        pairs: JSON.parse(JSON.stringify(pairs)),
+        pending: [],
+        mainChain: [],
+        highlights: { pairs: pairs.map(p => p.id) }
+      });
+
+      // 3. Extraction of larges and RECURSION call
+      let larges = pairs.map(p => p.large);
+      
+      globalSteps.push({
+        depth: depth,
+        phase: `Appel Récursif N. ${depth}`,
+        description: `<strong>[Niveau de récursion ${depth}]</strong> Nous devons trier la liste des vainqueurs (Larges) : <strong>[${larges.join(', ')}]</strong>. Pour ce faire, nous effectuons un <strong>appel récursif vers le Niveau ${depth + 1}</strong>.`,
+        container: [],
+        leftover: leftover,
+        pairs: JSON.parse(JSON.stringify(pairs)),
+        pending: [],
+        mainChain: [],
+        highlights: { larges: true }
+      });
+
+      let sortedLarges = runFJRecursion(larges, depth + 1);
+
+      // Reorder pairs to match sortedLarges
+      let sortedPairs = [];
+      for (let i = 0; i < sortedLarges.length; ++i) {
+        let p = pairs.find(pair => pair.large === sortedLarges[i]);
+        sortedPairs.push(p);
+      }
+      pairs = sortedPairs;
+
+      globalSteps.push({
+        depth: depth,
+        phase: `Retour Récursion N. ${depth}`,
+        description: `<strong>[Niveau de récursion ${depth}]</strong> Retour au niveau ${depth}. Les éléments vainqueurs sont maintenant triés : <strong>[${sortedLarges.join(', ')}]</strong>. Les paires ont été réordonnées.`,
+        container: [],
+        leftover: leftover,
+        pairs: JSON.parse(JSON.stringify(pairs)),
+        pending: [],
+        mainChain: [],
+        highlights: { sortedPairs: true }
+      });
+
+      // 4. Build Chains
+      let mainChain = [pairs[0].small];
+      for (let i = 0; i < pairs.length; ++i) {
+        mainChain.push(pairs[i].large);
+      }
+      let pending = pairs.slice(1).map(p => p.small);
+
+      globalSteps.push({
+        depth: depth,
+        phase: `Chaîne Initiale N. ${depth}`,
+        description: `<strong>[Niveau de récursion ${depth}]</strong> Initialisation de la Main Chain avec le premier petit (<strong>${pairs[0].small}</strong>) et les grands triés. Les autres éléments vont dans Pending : <strong>[${pending.join(', ')}]</strong>.`,
+        container: [],
+        leftover: leftover,
+        pairs: JSON.parse(JSON.stringify(pairs)),
+        pending: [...pending],
+        mainChain: [...mainChain],
+        highlights: { mainChain: [0], pending: [...Array(pending.length).keys()] }
+      });
+
+      // 5. Jacobsthal Insertion
+      function getJacobSeq(n) {
+        let seq = [1, 3];
+        while (true) {
+          let next = seq[seq.length - 1] + 2 * seq[seq.length - 2];
+          seq.push(next);
+          if (next > n) break;
+        }
+        return seq;
+      }
+
+      if (pending.length > 0) {
+        let jSeq = getJacobSeq(pending.length);
+        let lastJacob = 0;
+
+        for (let i = 0; i < jSeq.length; ++i) {
+          let currJacob = jSeq[i];
+          if (currJacob > pending.length) currJacob = pending.length;
+          
+          for (let k = currJacob; k > lastJacob; --k) {
+            let val = pending[k - 1];
+
+            globalSteps.push({
+              depth: depth,
+              phase: `Sélection Pending N. ${depth}`,
+              description: `<strong>[Niveau de récursion ${depth}]</strong> Sélection du pending <strong>${val}</strong> (indice Jacobsthal ${k-1}). Lancement de la recherche binaire dans la Main Chain.`,
+              container: [],
+              leftover: leftover,
+              pairs: JSON.parse(JSON.stringify(pairs)),
+              pending: [...pending],
+              mainChain: [...mainChain],
+              activeVal: val,
+              activeJacobIdx: k-1,
+              highlights: { pending: [k - 1] }
+            });
+
+            let low = 0;
+            let high = mainChain.length;
+
+            while (low < high) {
+              let mid = Math.floor((low + high) / 2);
+              let midVal = mainChain[mid];
+
+              globalSteps.push({
+                depth: depth,
+                phase: `Recherche Binaire N. ${depth}`,
+                description: `<strong>[Niveau de récursion ${depth}]</strong> Recherche binaire pour <strong>${val}</strong> dans la Main Chain.<br>
+                Index de recherche : [<strong>${low}</strong> à <strong>${high - 1}</strong>]. Milieu à l'index <strong>${mid}</strong> (valeur <strong>${midVal}</strong>).<br>
+                Comparaison : <strong>${val} < ${midVal}</strong> ?`,
+                container: [],
+                leftover: leftover,
+                pairs: JSON.parse(JSON.stringify(pairs)),
+                pending: [...pending],
+                mainChain: [...mainChain],
+                activeVal: val,
+                activeJacobIdx: k-1,
+                highlights: {
+                  mainChain: [mid],
+                  binaryBounds: { low, high, mid }
+                }
+              });
+
+              if (val < midVal) {
+                high = mid;
+              } else {
+                low = mid + 1;
+              }
+            }
+
+            mainChain.splice(low, 0, val);
+
+            globalSteps.push({
+              depth: depth,
+              phase: `Insertion N. ${depth}`,
+              description: `<strong>[Niveau de récursion ${depth}]</strong> Insertion de <strong>${val}</strong> à l'index <strong>${low}</strong> de la Main Chain.`,
+              container: [],
+              leftover: leftover,
+              pairs: JSON.parse(JSON.stringify(pairs)),
+              pending: [...pending],
+              mainChain: [...mainChain],
+              activeVal: val,
+              highlights: { mainChain: [low], inserted: low }
+            });
+          }
+          lastJacob = currJacob;
+          if (lastJacob >= pending.length) break;
+        }
+      }
+
+      // 6. Leftover Insertion
+      if (hasLeftover) {
+        globalSteps.push({
+          depth: depth,
+          phase: `Sélection Orphelin N. ${depth}`,
+          description: `<strong>[Niveau de récursion ${depth}]</strong> Sélection de l'orphelin <strong>${leftover}</strong> mis de côté pour l'insérer par recherche binaire dans la Main Chain.`,
+          container: [],
+          leftover: leftover,
+          pairs: JSON.parse(JSON.stringify(pairs)),
+          pending: [...pending],
+          mainChain: [...mainChain],
+          activeVal: leftover,
+          highlights: { leftover: true }
+        });
+
+        let low = 0;
+        let high = mainChain.length;
+
+        while (low < high) {
+          let mid = Math.floor((low + high) / 2);
+          let midVal = mainChain[mid];
+
+          globalSteps.push({
+            depth: depth,
+            phase: `Recherche Binaire N. ${depth}`,
+            description: `<strong>[Niveau de récursion ${depth}]</strong> Recherche binaire pour l'orphelin <strong>${leftover}</strong>.<br>
+            Index : [<strong>${low}</strong> à <strong>${high - 1}</strong>]. Milieu à l'index <strong>${mid}</strong> (valeur <strong>${midVal}</strong>).<br>
+            Comparaison : <strong>${leftover} < ${midVal}</strong> ?`,
+            container: [],
+            leftover: leftover,
+            pairs: JSON.parse(JSON.stringify(pairs)),
+            pending: [...pending],
+            mainChain: [...mainChain],
+            activeVal: leftover,
+            highlights: {
+              mainChain: [mid],
+              binaryBounds: { low, high, mid }
+            }
+          });
+
+          if (leftover < midVal) {
+            high = mid;
+          } else {
+            low = mid + 1;
+          }
+        }
+
+        mainChain.splice(low, 0, leftover);
+        leftover = null;
+
+        globalSteps.push({
+          depth: depth,
+          phase: `Insertion Orphelin N. ${depth}`,
+          description: `<strong>[Niveau de récursion ${depth}]</strong> Insertion de l'orphelin <strong>${leftover}</strong> à l'index <strong>${low}</strong> de la Main Chain.`,
+          container: [],
+          leftover: null,
+          pairs: JSON.parse(JSON.stringify(pairs)),
+          pending: [...pending],
+          mainChain: [...mainChain],
+          highlights: { mainChain: [low], inserted: low }
+        });
+      }
+
+      globalSteps.push({
+        depth: depth,
+        phase: `Tri Terminé N. ${depth}`,
+        description: `<strong>[Niveau de récursion ${depth}]</strong> Fin du tri. Séquence ordonnée obtenue : <strong>[${mainChain.join(', ')}]</strong>.`,
+        container: [],
+        leftover: null,
+        pairs: [],
+        pending: [],
+        mainChain: [...mainChain],
+        highlights: { mainChain: [...Array(mainChain.length).keys()] }
+      });
+
+      return mainChain;
+    }
+
+    function renderCurrentStep() {
+      if (steps.length === 0) return;
+
+      const step = steps[currentStepIndex];
+
+      // Update text details
+      document.getElementById('step-index').innerText = `Étape: ${currentStepIndex + 1}/${steps.length}`;
+      document.getElementById('step-phase').innerText = `Phase: ${step.phase}`;
+      document.getElementById('step-desc').innerHTML = step.description;
+
+      // Progress bar fill
+      const progressPercent = ((currentStepIndex) / (steps.length - 1)) * 100;
+      document.getElementById('progress-fill').style.width = progressPercent + '%';
+
+      // Update navigation buttons
+      document.getElementById('btn-prev').disabled = currentStepIndex === 0;
+      document.getElementById('btn-next').disabled = currentStepIndex === steps.length - 1;
+
+      // Update Jacobsthal highlights in sidebar
+      document.querySelectorAll('.jacob-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      if (step.activeJacobIdx !== undefined) {
+        let matchedJacob = step.activeJacobIdx + 1;
+        let jObj = document.getElementById(`jacob-${matchedJacob}`);
+        if (jObj) jObj.classList.add('active');
+      }
+
+      // Draw recursion stack indicator in header
+      const recStack = document.getElementById('rec-stack-display');
+      recStack.innerHTML = '';
+      for (let d = 0; d <= step.depth; ++d) {
+        const badge = document.createElement('span');
+        badge.className = 'stack-badge';
+        if (d === step.depth) {
+          badge.classList.add('active');
+          badge.innerHTML = `<span>Niveau ${d}</span>`;
+        } else {
+          badge.innerHTML = `<span>Niveau ${d}</span> &rarr;`;
+        }
+        recStack.appendChild(badge);
+      }
+
+      // Draw workspace
+      const workspace = document.getElementById('vis-workspace');
+      workspace.innerHTML = ''; // Clear
+
+      // Render original container if in phase 'Initialisation', 'Leftover', 'Regroupement' or 'Comparaison & Tri'
+      if (step.phase.startsWith('Initialisation') || step.phase.startsWith('Leftover') || step.phase.startsWith('Orphelin') || step.phase.startsWith('Regroupement') || step.phase.startsWith('Comparaison')) {
+        const sect = document.createElement('div');
+        sect.className = 'array-section';
+        sect.innerHTML = `<div class="array-title">${step.phase.startsWith('Couplage') || step.phase.startsWith('Regroupement') || step.phase.startsWith('Comparaison') ? 'Couplage en cours...' : 'Séquence Actuelle'}</div>`;
+        
+        const arrCont = document.createElement('div');
+        arrCont.className = 'array-container';
+        
+        step.container.forEach((num, idx) => {
+          const box = document.createElement('div');
+          box.className = 'num-box';
+          box.innerText = num;
+          box.innerHTML += `<div class="index-marker">${idx}</div>`;
+          
+          if (step.highlights.container && step.highlights.container.includes(idx)) {
+            box.classList.add('comparing');
+          } else if (step.highlights.pairedIndices && step.highlights.pairedIndices.includes(idx)) {
+            box.style.opacity = '0.2';
+            box.style.transform = 'scale(0.85)';
+            box.style.pointerEvents = 'none';
+          }
+          arrCont.appendChild(box);
+        });
+
+        // Leftover container
+        if (step.leftover !== null) {
+          const lBox = document.createElement('div');
+          lBox.className = 'num-box leftover';
+          lBox.innerText = step.leftover;
+          lBox.innerHTML += `<div class="index-marker">Orphelin</div>`;
+          if (step.phase.startsWith('Leftover') || step.phase.startsWith('Orphelin')) {
+            lBox.classList.add('active');
+          } else {
+            lBox.style.opacity = '0.5';
+          }
+          arrCont.appendChild(lBox);
+        }
+
+        sect.appendChild(arrCont);
+        workspace.appendChild(sect);
+      }
+
+      // Check if we are in the Jacobsthal / Binary Search insertion phases
+      const isInsertionPhase = step.phase.includes('Chaîne') || 
+                               step.phase.includes('Sélection') || 
+                               step.phase.includes('Recherche') || 
+                               step.phase.includes('B-Search') || 
+                               step.phase.includes('Insertion') || 
+                               step.phase.includes('Terminé');
+
+      // Render Pairs section (ONLY if NOT in the insertion phase)
+      if (step.pairs && step.pairs.length > 0 && !isInsertionPhase) {
+        const sect = document.createElement('div');
+        sect.className = 'array-section';
+        sect.innerHTML = '<div class="array-title">Couples de Paires (Large & Small)</div>';
+
+        const pairsGrid = document.createElement('div');
+        pairsGrid.className = 'pairs-grid';
+
+        step.pairs.forEach((pair) => {
+          const card = document.createElement('div');
+          card.className = 'pair-card';
+          
+          if (step.highlights.pairs && step.highlights.pairs.includes(pair.id)) {
+            card.classList.add('active');
+          }
+
+          // Large slot (Top)
+          const slotLarge = document.createElement('div');
+          slotLarge.className = 'pair-slot';
+          slotLarge.innerHTML = `<span class="pair-label">Large</span>`;
+          const boxL = document.createElement('div');
+          boxL.className = 'num-box';
+          boxL.innerText = pair.large;
+          
+          if (pair.isSorted) {
+            boxL.classList.add('active');
+            if (pair.swapAnim && step.highlights.pairs && step.highlights.pairs.includes(pair.id)) {
+              boxL.classList.add('swap-up');
+            }
+          }
+          slotLarge.appendChild(boxL);
+
+          // Small slot (Bottom)
+          const slotSmall = document.createElement('div');
+          slotSmall.className = 'pair-slot';
+          slotSmall.innerHTML = `<span class="pair-label">Small</span>`;
+          const boxS = document.createElement('div');
+          boxS.className = 'num-box';
+          boxS.innerText = pair.small;
+          
+          if (pair.isSorted) {
+            boxS.classList.add('pending-element');
+            if (pair.swapAnim && step.highlights.pairs && step.highlights.pairs.includes(pair.id)) {
+              boxS.classList.add('swap-down');
+            }
+          }
+          slotSmall.appendChild(boxS);
+
+          card.appendChild(slotLarge);
+          card.appendChild(slotSmall);
+          pairsGrid.appendChild(card);
+        });
+
+        sect.appendChild(pairsGrid);
+        workspace.appendChild(sect);
+      }
+
+      // Render Main Chain & Pending Lists
+      if (step.mainChain && step.mainChain.length > 0) {
+        const mcSect = document.createElement('div');
+        mcSect.className = 'array-section';
+        mcSect.innerHTML = '<div class="array-title">Main Chain (Chaîne Principale Triée)</div>';
+
+        const mcCont = document.createElement('div');
+        mcCont.className = 'array-container';
+        mcCont.style.position = 'relative';
+
+        step.mainChain.forEach((num, idx) => {
+          const box = document.createElement('div');
+          box.className = 'num-box';
+          box.innerText = num;
+          box.innerHTML += `<div class="index-marker">${idx}</div>`;
+          
+          if (step.highlights.mainChain && step.highlights.mainChain.includes(idx)) {
+            box.classList.add('active');
+          }
+
+          if (step.highlights.binaryBounds) {
+            const { low, high, mid } = step.highlights.binaryBounds;
+            if (idx === mid) {
+              box.classList.add('binary-mid');
+            } else if (idx >= low && idx < high) {
+              box.classList.add('binary-bound');
+            }
+          }
+
+          if (step.highlights.inserted === idx) {
+            box.classList.add('inserted-recently');
+            box.classList.add('comparing');
+          }
+
+          mcCont.appendChild(box);
+        });
+
+        if (step.highlights.binaryBounds) {
+          const { low, high } = step.highlights.binaryBounds;
+          const indicator = document.createElement('div');
+          indicator.className = 'range-indicator';
+          const boxWidth = 50;
+          const gap = 12;
+          const leftOffset = low * (boxWidth + gap) + 20;
+          const width = (high - low) * boxWidth + (high - low - 1) * gap;
+          indicator.style.left = `${leftOffset}px`;
+          indicator.style.width = `${width}px`;
+          mcCont.appendChild(indicator);
+        }
+
+        mcSect.appendChild(mcCont);
+        workspace.appendChild(mcSect);
+      }
+
+      if (step.pending && step.pending.length > 0) {
+        const pSect = document.createElement('div');
+        pSect.className = 'array-section';
+        pSect.innerHTML = '<div class="array-title">Pending Elements (Éléments en Attente d\'insertion)</div>';
+
+        const pCont = document.createElement('div');
+        pCont.className = 'array-container';
+
+        step.pending.forEach((num, idx) => {
+          const box = document.createElement('div');
+          box.className = 'num-box pending-element';
+          box.innerText = num;
+          box.innerHTML += `<div class="index-marker">P[${idx}]</div>`;
+
+          if (step.highlights.pending && step.highlights.pending.includes(idx)) {
+            box.classList.add('active');
+          }
+
+          if (step.mainChain && step.mainChain.includes(num) && step.activeVal !== num) {
+            box.style.opacity = '0.35';
+            box.style.filter = 'grayscale(60%)';
+          }
+
+          pCont.appendChild(box);
+        });
+
+        pSect.appendChild(pCont);
+        workspace.appendChild(pSect);
+      }
+
+      if (step.leftover !== null && step.phase !== 'Initialisation' && step.phase !== 'Leftover' && !step.phase.startsWith('Regroupement') && !step.phase.startsWith('Comparaison') && !step.phase.startsWith('Orphelin') && !step.phase.startsWith('Initialisation N.')) {
+        const lSect = document.createElement('div');
+        lSect.className = 'array-section';
+        lSect.innerHTML = '<div class="array-title">Élément Orphelin Isolé</div>';
+
+        const lCont = document.createElement('div');
+        lCont.className = 'array-container';
+
+        const lBox = document.createElement('div');
+        lBox.className = 'num-box leftover';
+        if (step.highlights.leftover) {
+          lBox.classList.add('active');
+        }
+        lBox.innerText = step.leftover;
+        lCont.appendChild(lBox);
+        lSect.appendChild(lCont);
+        workspace.appendChild(lSect);
+      }
+    }
+
+    function nextStep() {
+      if (currentStepIndex < steps.length - 1) {
+        currentStepIndex++;
+        renderCurrentStep();
+      } else {
+        if (isPlaying) togglePlay();
+      }
+    }
+
+    function prevStep() {
+      if (currentStepIndex > 0) {
+        currentStepIndex--;
+        renderCurrentStep();
+      }
+    }
+
+    window.onload = function() {
+      setPreset(5);
+    }
+  </script>
+</body>
+</html>

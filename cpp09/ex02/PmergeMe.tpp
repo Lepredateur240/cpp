@@ -6,7 +6,7 @@
 /*   By: masenche <masenche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 20:00:00 by masenche          #+#    #+#             */
-/*   Updated: 2026/05/31 20:02:37 by masenche         ###   ########.fr       */
+/*   Updated: 2026/06/15 22:47:11 by masenche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,37 @@ bool PmergeMe::_handleLeftover(T& container, int& leftover) {
 // Étape 2 : Créer les paires (Large, Small) et trier les paires par leur Large
 template <typename T>
 void PmergeMe::_createSortedPairs(T& container, std::vector<std::pair<int, int> >& pairs) {
+	// A. Création des paires initiales (chaque paire a le plus grand élément en premier)
 	for (size_t i = 0; i < container.size(); i += 2) {
 		if (container[i] < container[i+1])
 			pairs.push_back(std::make_pair(container[i+1], container[i]));
 		else
 			pairs.push_back(std::make_pair(container[i], container[i+1]));
 	}
-	std::sort(pairs.begin(), pairs.end());
+
+	// B. Extraction des plus grands éléments (les gagnants) de chaque paire
+	T larges;
+	for (size_t i = 0; i < pairs.size(); ++i)
+		larges.push_back(pairs[i].first);
+
+	// C. Tri récursif des plus grands éléments avec le tri fusion-insertion (Ford-Johnson)
+	sortContainer(larges);
+
+	// D. Reconstruction de la séquence des paires triées selon l'ordre obtenu pour larges
+	std::vector<std::pair<int, int> > sortedPairs;
+	sortedPairs.reserve(pairs.size());
+	std::vector<bool> used(pairs.size(), false);
+
+	for (size_t i = 0; i < larges.size(); ++i) {
+		for (size_t j = 0; j < pairs.size(); ++j) {
+			if (!used[j] && pairs[j].first == larges[i]) {
+				sortedPairs.push_back(pairs[j]);
+				used[j] = true;
+				break;
+			}
+		}
+	}
+	pairs = sortedPairs;
 }
 
 // Étape 3 : Extraire la Main Chain (éléments larges) et les éléments Pending
